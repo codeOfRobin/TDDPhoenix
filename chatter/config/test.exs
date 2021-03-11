@@ -22,3 +22,5 @@ config :chatter, ChatterWeb.Endpoint,
 # Print only warnings and errors during test
 config :logger, level: :warn
 config :chatter, :sql_sandbox, true
+
+config :wallaby, driver: Wallaby.Chrome
