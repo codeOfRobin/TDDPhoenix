@@ -2,7 +2,10 @@
 
 <ul>
   <%= for room <- @chat_rooms do %>
-    <li class=
-"room"><%= room.name %></li>
+    <li data-role="room"><%= room.name %></li>
   <% end %>
+
+  <div>
+    <%=link "New chat room", to: Routes.chat_room_path(@conn, :new) %>
+  </div>
 </ul>
