@@ -15,4 +15,10 @@ defmodule Chatter.ChatTest do
       assert room2 in rooms
     end
   end
+
+  describe "new_chat_room/0" do
+    test "prepares a changeset for a new chat room" do
+      assert %Ecto.Changeset{} = Chat.new_chat_room()
+    end
+  end
 end

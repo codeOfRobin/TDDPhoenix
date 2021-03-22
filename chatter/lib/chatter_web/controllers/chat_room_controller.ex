@@ -8,6 +8,7 @@ defmodule ChatterWeb.ChatRoomController do
   end
 
   def new(conn, _params) do
-    render(conn, "new.html")
+    changeset = Chatter.Chat.new_chat_room()
+    render(conn, "new.html", changeset: changeset)
   end
 end
