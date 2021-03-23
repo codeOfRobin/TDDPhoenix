@@ -11,5 +11,6 @@ defmodule Chatter.Chat.Room do
   def changeset(struct, attrs) do
     struct
     |> cast(attrs, [:name])
+    |> validate_required([:name])
   end
 end
