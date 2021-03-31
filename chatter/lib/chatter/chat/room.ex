@@ -12,5 +12,6 @@ defmodule Chatter.Chat.Room do
     struct
     |> cast(attrs, [:name])
     |> validate_required([:name])
+    |> unique_constraint(:name)
   end
 end
