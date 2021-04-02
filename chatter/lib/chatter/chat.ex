@@ -9,4 +9,5 @@ defmodule Chatter.Chat do
     %Chat.Room{}
     |> Chat.Room.changeset(%{})
   end
+
 end
