@@ -10,4 +10,9 @@ defmodule Chatter.Chat do
     |> Chat.Room.changeset(%{})
   end
 
+  def create_chat_room(params) do
+    %Chat.Room{}
+    |> Chat.Room.changeset(params)
+    |> Repo.insert()
+  end
 end
