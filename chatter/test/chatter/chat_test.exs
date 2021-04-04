@@ -22,6 +22,14 @@ defmodule Chatter.ChatTest do
     end
   end
 
+  describe "find_room/1" do
+    test "retreives a room by id" do
+      room = insert(:chat_room)
+      found_room = Chatter.Chat.find_room(room.id)
+      assert found_room == room
+    end
+  end
+
   describe "create_chat_room/1" do
     test "create a room" do
       params = string_params_for(:chat_room)

@@ -15,4 +15,8 @@ defmodule Chatter.Chat do
     |> Chat.Room.changeset(params)
     |> Repo.insert()
   end
+
+  def find_room(id) do
+    Repo.get!(Chat.Room, id)
+  end
 end

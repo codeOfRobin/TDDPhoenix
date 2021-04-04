@@ -11,6 +11,11 @@ defmodule ChatterWeb.ChatRoomController do
     render(conn, "new.html", changeset: changeset)
   end
 
+  def show(conn, %{"id" => id}) do
+    room = Chatter.Chat.find_room(id)
+    render(conn, "show.html", chat_room: room)
+  end
+
   def create(conn, %{"room" => room_params}) do
     case Chatter.Chat.create_chat_room(room_params) do
       {:ok, room} ->
