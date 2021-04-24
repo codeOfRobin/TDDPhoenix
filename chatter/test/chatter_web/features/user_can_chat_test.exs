@@ -15,7 +15,6 @@ defmodule ChatterWeb.UserCanChatTest do
       |> new_user()
       |> visit(rooms_index())
       |> join_room(room.name)
-      
 
     user
     |> add_message("Hi everyone")
@@ -23,6 +22,9 @@ defmodule ChatterWeb.UserCanChatTest do
     other_user
     |> assert_has(message("Hi everyone"))
     |> add_message("Hi, welcome to #{room.name}")
+
+    user
+    |> assert_has(message("Hi, welcome to #{room.name}"))
   end
 
   defp message(text) do
