@@ -1,7 +1,7 @@
 defmodule ChatterWeb.UserCanChatTest do
   use ChatterWeb.FeatureCase, async: true
 
-  test "user visits rooms ", %{session: session, metadata: metadata} do
+  test "user visits rooms ", %{metadata: metadata} do
     room = insert(:chat_room)
 
     user =
@@ -28,7 +28,7 @@ defmodule ChatterWeb.UserCanChatTest do
   end
 
   defp message(text) do
-    Query.data("role", message, text: "Hi everyone")
+    Query.data("role", "message", text: text)
   end
 
   defp add_message(user, message) do
@@ -38,7 +38,7 @@ defmodule ChatterWeb.UserCanChatTest do
   end
 
   defp new_user(metadata) do
-    {:ok, user} = Wallaby.start_session(metadata)
+    {:ok, user} = Wallaby.start_session(metadata: metadata)
     user
   end
 

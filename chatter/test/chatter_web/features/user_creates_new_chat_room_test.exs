@@ -4,9 +4,9 @@ defmodule ChatterWeb.UserCreatesNewChatRoomTest do
   test "user creates a chat room", %{session: session} do
     session
     |> visit(rooms_index())
-    |> click(Query.link("New chat room"))
+    |> click(new_chat_link())
     |> create_new_chat_room("Elixir")
-    |> assert_has(room_title("elixir"))
+    |> assert_has(room_title("Elixir"))
   end
 
   defp rooms_index(), do: Routes.chat_room_path(@endpoint, :index)
@@ -19,6 +19,6 @@ defmodule ChatterWeb.UserCreatesNewChatRoomTest do
   end
 
   defp room_title(title) do
-    Query.data("role", "room-title", text: "elixir")
+    Query.data("role", "room-title", text: title)
   end
 end

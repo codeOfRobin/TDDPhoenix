@@ -1,3 +1,11 @@
 # lib/chatter_web/templates/chat_room/show.html.eex
 
 <h1 data-role="room-title"><%= @chat_room.name %></h1>
+
+<form>
+  <label>
+    New Message <input id="message" name="message" type="text" />
+  </label>
+
+  <button type="submit">Send</button>
+</form>
