@@ -1,6 +1,8 @@
 # lib/chatter_web/templates/chat_room/show.html.eex
 
-<h1 data-role="room-title"><%= @chat_room.name %></h1>
+<%= content_tag(:h1, id: "title", data: [role: "room-title", chat_room_name: @chat_room.name]) do %>
+  <%= @chat_room.name %>
+<% end %>
 
 <form>
   <label>

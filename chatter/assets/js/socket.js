@@ -6,9 +6,9 @@
 //
 // Pass the token on params as below. Or remove it
 // from the params if you are not using authentication.
-import {Socket} from "phoenix"
+import { Socket } from "phoenix";
 
-let socket = new Socket("/socket", {params: {token: window.userToken}})
+let socket = new Socket("/socket", { params: {} });
 
 // When you connect, you'll often need to authenticate the client.
 // For example, imagine you have an authentication plug, `MyAuth`,
@@ -52,12 +52,20 @@ let socket = new Socket("/socket", {params: {token: window.userToken}})
 //     end
 //
 // Finally, connect to the socket:
-socket.connect()
+socket.connect();
 
-// Now that you are connected, you can join channels with a topic:
-let channel = socket.channel("topic:subtopic", {})
-channel.join()
-  .receive("ok", resp => { console.log("Joined successfully", resp) })
-  .receive("error", resp => { console.log("Unable to join", resp) })
-
-export default socket
+// Now that you are connected, you can join channels with a topic
+let chatRoomTitle = document.getElementById("title");
+if (chatRoomTitle) {
+  let chatRoomName = chatRoomTitle.dataset.chatRoomName;
+  let channel = socket.channel(`chat_room:${chatRoomName}`, {});
+  channel
+    .join()
+    .receive("ok", (resp) => {
+      console.log("Joined successfully", resp);
+    })
+    .receive("error", (resp) => {
+      console.log("Unable to join", resp);
+    });
+}
+export default socket;
