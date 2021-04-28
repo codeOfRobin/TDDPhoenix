@@ -4,7 +4,7 @@
   <%= @chat_room.name %>
 <% end %>
 
-<form>
+<form id="new-message-form">
   <label>
     New Message <input id="message" name="message" type="text" />
   </label>

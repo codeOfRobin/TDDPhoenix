@@ -59,6 +59,15 @@ let chatRoomTitle = document.getElementById("title");
 if (chatRoomTitle) {
   let chatRoomName = chatRoomTitle.dataset.chatRoomName;
   let channel = socket.channel(`chat_room:${chatRoomName}`, {});
+
+  let form = document.getElementById("new-message-form");
+  let messageInput = document.getElementById("message");
+  let messages = document.querySelector("[data-role='messages']");
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    channel.push("new_message", { body: messageInput.value });
+    event.target.reset();
+  });
   channel
     .join()
     .receive("ok", (resp) => {
@@ -67,5 +76,12 @@ if (chatRoomTitle) {
     .receive("error", (resp) => {
       console.log("Unable to join", resp);
     });
+
+  channel.on("new_message", (payload) => {
+    let messageItem = document.createElement("li");
+    messageItem.dataset.role = "message";
+    messageItem.innerText = payload.body;
+    messages.appendChild(messageItem);
+  });
 }
 export default socket;
