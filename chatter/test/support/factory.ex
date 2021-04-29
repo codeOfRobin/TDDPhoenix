@@ -6,4 +6,11 @@ defmodule Chatter.Factory do
       name: sequence(:name, &"chat room #{&1}")
     }
   end
+
+  def user_factory do
+    %Chatter.User{
+      email: sequence(:email, &"super#{&1}@example.com"),
+      password: "password1"
+    }
+  end
 end
