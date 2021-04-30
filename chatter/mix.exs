@@ -47,7 +47,8 @@ defmodule Chatter.MixProject do
       {:plug_cowboy, "~> 2.0"},
       {:mix_test_interactive, "~> 1.0", only: :dev, runtime: false},
       {:wallaby, "~> 0.28.0", [runtime: false, only: :test]},
-      {:ex_machina, "~> 2.3", only: :test}
+      {:ex_machina, "~> 2.3", only: :test},
+      {:doorman, "~> 0.6.2"}
     ]
   end
 
@@ -67,7 +68,7 @@ defmodule Chatter.MixProject do
     ]
   end
 
-   defp watch_assets(_) do
+  defp watch_assets(_) do
     Mix.shell().cmd(
       "cd assets && ./node_modules/webpack/bin/webpack.js --mode development --watch"
     )
