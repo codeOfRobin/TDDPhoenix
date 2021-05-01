@@ -8,10 +8,17 @@ defmodule ChatterWeb.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug Doorman.Login.Session
   end
 
   pipeline :api do
     plug :accepts, ["json"]
+  end
+
+  scope "/", ChatterWeb do
+    pipe_through :browser
+    get "/sign_in", SessionController, :new
+    resources "/sessions", SessionController, only: [:create]
   end
 
   scope "/", ChatterWeb do

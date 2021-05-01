@@ -8,6 +8,7 @@ defmodule ChatterWeb.FeatureCase do
       alias ChatterWeb.Router.Helpers, as: Routes
 
       import Chatter.Factory
+      import ChatterWeb.FeatureHelpers
 
       @endpoint ChatterWeb.Endpoint
     end
