@@ -7,28 +7,28 @@ defmodule ChatterWeb.UserCanChatTest do
     user1 = build(:user) |> set_password("password") |> insert()
     user2 = build(:user) |> set_password("password") |> insert()
 
-    user =
+    session1 =
       metadata
       |> new_user()
       |> visit(rooms_index())
       |> sign_in(as: user1)
       |> join_room(room.name)
 
-    other_user =
+    session2 =
       metadata
       |> new_user()
       |> visit(rooms_index())
       |> sign_in(as: user2)
       |> join_room(room.name)
-
-    user
+      
+    session1
     |> add_message("Hi everyone")
 
-    other_user
+    session2
     |> assert_has(message("Hi everyone"))
     |> add_message("Hi, welcome to #{room.name}")
 
-    user
+    session1
     |> assert_has(message("Hi, welcome to #{room.name}"))
   end
 
