@@ -9,7 +9,7 @@ defmodule ChatterWeb.SessionController do
     case Doorman.authenticate(email, password) do
       nil ->
         conn
-        |> put_flash(:error, "Invalid error or password")
+        |> put_flash(:error, "Invalid email or password")
         |> render("new.html")
 
       user ->

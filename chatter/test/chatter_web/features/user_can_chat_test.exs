@@ -4,8 +4,8 @@ defmodule ChatterWeb.UserCanChatTest do
   test "user visits rooms ", %{metadata: metadata} do
     room = insert(:chat_room)
 
-    user1 = build(:user) |> set_password("password") |> insert()
-    user2 = build(:user) |> set_password("password") |> insert()
+    user1 = build(:user) |> insert()
+    user2 = build(:user) |> insert()
 
     session1 =
       metadata
@@ -20,7 +20,7 @@ defmodule ChatterWeb.UserCanChatTest do
       |> visit(rooms_index())
       |> sign_in(as: user2)
       |> join_room(room.name)
-      
+
     session1
     |> add_message("Hi everyone")
 

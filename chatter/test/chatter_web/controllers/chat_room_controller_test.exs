@@ -1,6 +1,8 @@
 defmodule ChatterWeb.ChatRoomControllerTest do
   use ChatterWeb.ConnCase, async: true
 
+  import ChatterWeb.ConnTestHelpers
+
   describe "create/2" do
     test "renders new page with errors when data is invalid", %{conn: conn} do
       insert(:chat_room, name: "elixir")
@@ -14,13 +16,5 @@ defmodule ChatterWeb.ChatRoomControllerTest do
 
       assert response =~ "has already been taken"
     end
-  end
-
-  def sign_in(conn) do
-    user = build(:user) |> set_password("password") |> insert()
-
-    conn
-    |> Plug.Test.init_test_session(%{})
-    |> Doorman.Login.Session.login(user)
   end
 end

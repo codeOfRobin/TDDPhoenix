@@ -20,7 +20,7 @@ defmodule Chatter.MixProject do
   def application do
     [
       mod: {Chatter.Application, []},
-      extra_applications: [:logger, :runtime_tools, :plug]
+      extra_applications: [:logger, :runtime_tools]
     ]
   end
 
@@ -48,7 +48,7 @@ defmodule Chatter.MixProject do
       {:mix_test_interactive, "~> 1.0", only: :dev, runtime: false},
       {:wallaby, git: "https://github.com/elixir-wallaby/wallaby/", runtime: false, only: :test},
       {:ex_machina, "~> 2.3", only: :test},
-      {:doorman, "~> 0.6.2"}
+      {:doorman, git: "https://github.com/aplaut-tech/doorman"}
     ]
   end
 

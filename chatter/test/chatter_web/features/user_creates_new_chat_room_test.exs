@@ -2,7 +2,7 @@ defmodule ChatterWeb.UserCreatesNewChatRoomTest do
   use ChatterWeb.FeatureCase, async: true
 
   test "user creates a chat room", %{session: session} do
-    user = build(:user) |> set_password("superpass") |> insert()
+    user = build(:user) |> insert()
 
     session
     |> visit("/")
