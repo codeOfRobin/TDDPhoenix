@@ -1,6 +1,8 @@
 defmodule ChatterWeb.ChatRoomControllerTest do
   use ChatterWeb.ConnCase, async: true
 
+  import ChatterWeb.ConnTestHelpers
+
   describe "create/2" do
     test "renders new page with errors when data is invalid", %{conn: conn} do
       insert(:chat_room, name: "elixir")
@@ -8,6 +10,7 @@ defmodule ChatterWeb.ChatRoomControllerTest do
 
       response =
         conn
+        |> sign_in()
         |> post(Routes.chat_room_path(conn, :create), %{"room" => params})
         |> html_response(200)
 
