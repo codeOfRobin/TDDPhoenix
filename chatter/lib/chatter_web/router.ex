@@ -19,6 +19,7 @@ defmodule ChatterWeb.Router do
     pipe_through :browser
     get "/sign_in", SessionController, :new
     resources "/sessions", SessionController, only: [:create]
+    resources "/users", UserController, only: [:new]
   end
 
   scope "/", ChatterWeb do
