@@ -9,3 +9,9 @@
 
   <%= submit "Sign in" %>
 <% end %>
+
+<div>
+  <p>Don't have an account?</p>
+  <%=
+ link "Create an account", to: Routes.user_path(@conn, :new) %>
+</div>
