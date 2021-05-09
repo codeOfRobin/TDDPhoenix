@@ -25,15 +25,16 @@ defmodule ChatterWeb.UserCanChatTest do
     |> add_message("Hi everyone")
 
     session2
-    |> assert_has(message("Hi everyone"))
+    |> assert_has(message("Hi everyone", author: user1))
     |> add_message("Hi, welcome to #{room.name}")
 
     session1
-    |> assert_has(message("Hi, welcome to #{room.name}"))
+    |> assert_has(message("Hi, welcome to #{room.name}", author: user2))
   end
 
-  defp message(text) do
-    Query.data("role", "message", text: text)
+  defp message(text, author: author) do
+    message = "#{author.email}: #{text}"
+    Query.data("role", "message", text: message)
   end
 
   defp add_message(user, message) do
