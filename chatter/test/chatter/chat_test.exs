@@ -43,4 +43,11 @@ defmodule Chatter.ChatTest do
       assert "has already been taken" in errors_on(changeset).name
     end
   end
+
+  describe "find_room_by_name/1" do
+    test "retreives a room by name" do
+      room = insert(:chat_room)
+      assert Chat.find_room_by_name(room.name) == room
+    end
+  end
 end
