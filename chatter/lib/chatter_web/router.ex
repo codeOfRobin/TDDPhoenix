@@ -9,6 +9,7 @@ defmodule ChatterWeb.Router do
     plug :protect_from_forgery
     plug :put_secure_browser_headers
     plug Doorman.Login.Session
+    plug Plugs.PutUserEmail
   end
 
   pipeline :api do
