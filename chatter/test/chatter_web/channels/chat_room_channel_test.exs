@@ -1,5 +1,5 @@
 defmodule ChatterWeb.ChatRoomChannelTest do
-  use ChatterWeb.ChannelCase, async: true
+  use ChatterWeb.ChannelCase
 
   describe "new_message event" do
     test "broadcasts message to all users" do

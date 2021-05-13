@@ -1,5 +1,5 @@
 defmodule ChatterWeb.UserVisitsRoomsPageTest do
-  use ChatterWeb.FeatureCase, async: true
+  use ChatterWeb.FeatureCase, async: false
 
   test "user visits rooms page to see a list of rooms", %{session: session} do
     user = build(:user) |> insert()

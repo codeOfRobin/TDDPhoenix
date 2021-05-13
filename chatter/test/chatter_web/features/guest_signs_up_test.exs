@@ -1,5 +1,5 @@
 defmodule ChatterWeb.GuestSignsUpTest do
-  use ChatterWeb.FeatureCase, async: true
+  use ChatterWeb.FeatureCase, async: false
 
   test "guest signs up with email and password", %{session: session} do
     room = insert(:chat_room)

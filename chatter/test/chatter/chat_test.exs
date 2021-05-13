@@ -58,9 +58,18 @@ defmodule Chatter.ChatTest do
       {:ok, message} = Chat.new_message(room, params)
 
       assert message.chat_room_id == room.id
-      assert message.body == params["body"]
-      assert message.author == params["author"]
+      assert message.body == params.body
+      assert message.author == params.author
       assert message.id
+    end
+
+    test "returns a changeset if insert fails" do
+      room = insert(:chat_room)
+      params = %{}
+
+      {:error, changeset} = Chat.new_message(room, params)
+
+      assert errors_on(changeset).body
     end
   end
 end
