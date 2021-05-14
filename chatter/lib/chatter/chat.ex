@@ -23,4 +23,11 @@ defmodule Chatter.Chat do
   def find_room_by_name(name) do
     Chat.Room |> Repo.get_by!(name: name)
   end
+
+  def new_message(room, params) do
+    room
+    |> Ecto.build_assoc(:messages)
+    |> Chat.Room.Message.changeset(params)
+    |> Repo.insert()
+  end
 end
