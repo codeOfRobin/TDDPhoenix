@@ -1,5 +1,5 @@
 defmodule ChatterWeb.UserCanChatTest do
-  use ChatterWeb.FeatureCase, async: true
+  use ChatterWeb.FeatureCase, async: false
 
   test "user visits rooms ", %{metadata: metadata} do
     room = insert(:chat_room)

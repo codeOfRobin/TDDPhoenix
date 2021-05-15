@@ -2,6 +2,10 @@ defmodule Chatter.Chat.Room.Message do
   use Ecto.Schema
   import Ecto.Changeset
 
+  @valid_fields [:author, :body, :chat_room_id]
+
+  @derive {Jason.Encoder, only: [:author, :body, :chat_room_id]}
+
   schema "chat_room_messages" do
     field :author, :string
     field :body, :string
@@ -13,7 +17,7 @@ defmodule Chatter.Chat.Room.Message do
   @doc false
   def changeset(message, attrs) do
     message
-    |> cast(attrs, [])
-    |> validate_required([])
+    |> cast(attrs, @valid_fields)
+    |> validate_required(@valid_fields)
   end
 end
