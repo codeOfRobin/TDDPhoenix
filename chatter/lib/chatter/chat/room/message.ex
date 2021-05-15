@@ -4,6 +4,8 @@ defmodule Chatter.Chat.Room.Message do
 
   @valid_fields [:author, :body, :chat_room_id]
 
+  @derive {Jason.Encoder, only: [:author, :body, :chat_room_id]}
+
   schema "chat_room_messages" do
     field :author, :string
     field :body, :string

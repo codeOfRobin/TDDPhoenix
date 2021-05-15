@@ -72,4 +72,23 @@ defmodule Chatter.ChatTest do
       assert errors_on(changeset).body
     end
   end
+
+  describe "room_messages/1" do
+    test "returns all messages in a given room" do
+      room = insert(:chat_room)
+      messages = insert_pair(:chat_room_message, chat_room: room)
+      _different_room_message = insert(:chat_room_message)
+
+      found_messages = Chat.room_messages(room)
+
+      assert values_match(found_messages, messages, key: :id)
+      assert values_match(found_messages, messages, key: :body)
+      assert values_match(found_messages, messages, key: :author)
+    end
+  end
+
+  defp values_match(found_messages, messages, key: key),
+    do: map_values(found_messages, key) == map_values(messages, key)
+
+  defp map_values(structs, key), do: Enum.map(structs, &Map.get(&1, key))
 end
